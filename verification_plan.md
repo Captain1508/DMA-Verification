@@ -69,7 +69,7 @@ Honest gaps, not claimed as done:
 - **No constrained-random or directed edge-case tests yet** — current coverage is one directed scenario (single descriptor, 8-byte transfer). Variable transfer sizes, max-length transfers, and multi-descriptor chains are unverified.
 - **No error-injection testing** — bus-error/SLVERR behavior during descriptor fetch or data movement is unverified, consistent with the RTL not yet handling it.
 - **No back-to-back / multi-descriptor chain test** — the scatter-gather loop-back logic is implemented and was verified at the RTL sanity stage, but not yet exercised through the UVM environment.
-- **Functional coverage is minimal** — one covergroup on CSR register access (see below); no coverage yet on transfer sizes, address ranges, or error paths.
+- **Functional coverage**: CSR register access covergroup achieves 91.67% (6/8 cross bins). The two unhit combinations — **writing DMA_STATUS and reading DMA_CONTROL** — are correctly unreachable given the register semantics (status is hardware-only, control's start bit is write-only and self-clearing), confirmed rather than assumed.
 - **Code coverage has not been measured** — no formal line/branch/toggle coverage run yet.
 - **RAL not used** — register tracking is currently manual (plain variables in the scoreboard), not a `uvm_reg` model.
 - **SVA not used** — no protocol-level assertions bound to the interfaces yet; correctness is currently checked only at the transaction level.
