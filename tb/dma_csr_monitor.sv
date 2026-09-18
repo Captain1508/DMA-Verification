@@ -32,7 +32,7 @@ class dma_csr_monitor extends uvm_monitor;
     dma_csr_txn tr;
     forever begin 
         @(vif.mon_cb);
-        if(vif.mon_cb.bvalid) begin
+        if(vif.mon_cb.bvalid && vif.mon_cb.bready) begin
             tr = dma_csr_txn::type_id::create("tr");
             tr.addr = vif.mon_cb.awaddr;
             tr.is_write = 1'b1;
@@ -40,7 +40,7 @@ class dma_csr_monitor extends uvm_monitor;
             cov_tr = tr;
             csr_cg.sample();
             mon_analysis_port.write(tr);
-        end else if(vif.mon_cb.rvalid) begin
+        end else if(vif.mon_cb.rvalid && vif.mn_cb.rready) begin
             tr = dma_csr_txn::type_id::create("tr");
             tr.is_write = 1'b0;
             tr.addr = vif.mon_cb.araddr;
