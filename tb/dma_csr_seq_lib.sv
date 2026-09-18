@@ -7,11 +7,11 @@ class write_desc_ptr_l_seq extends uvm_sequence #(dma_csr_txn) ;
 
 task body();
     req = dma_csr_txn::type_id::create("req");
-    start_item(txn);
+    start_item(req);
     req.is_write = 1'b1;
     req.addr = reg_desc_ptr_l;
     req.wdata = desc_addr[31:0];
-    finish_item(txn);
+    finish_item(req);
 endtask
 endclass //write_desc_ptr_l_seq extends uvm_sequence 
 
