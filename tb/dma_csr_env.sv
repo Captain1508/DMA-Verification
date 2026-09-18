@@ -6,14 +6,20 @@ class dma_csr_env extends uvm_env;
 
     dma_csr_agent m_agent;
     dma_csr_scoreboard m_scoreboard;
+    dma_mem_agent m_mem_agent;
+    dma_mem_scoreboard m_mem_scoreboard;
+
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         m_agent = dma_csr_agent::type_id::create("m_agent",this);
         m_scoreboard = dma_csr_scoreboard::type_id::create("m_scoreboard",this);
+        m_mem_agent = dma_mem_agent::type_id::create("m_mem_agent",this);
+        m_mem_scoreboard = dma_mem_scoreboard::type_id::create("m_mem_scoreboard",this);
     endfunction
 
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         m_agent.mon.mon_analysis_port.connect(m_scoreboard.ap_imp);
+        m_mem_agent.mon.mon_analysis_port.connect(m_mem_scoreboard.ap_imp);
 endfunction
 endclass //dma_csr_env extends uvm_environment
