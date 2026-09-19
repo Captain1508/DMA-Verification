@@ -1,11 +1,11 @@
-# DRAM Verification
+# DMA Verification
 
-RTL design and SystemVerilog/UVM-based verification of a DRAM controller.
+RTL design and SystemVerilog/UVM-based verification of a DMA controller.
 
 ## Project Structure
 
 ### rtl/
-Contains the DRAM RTL design:
+Contains the DMA RTL design:
 - DMA controller
 - AXI master
 - Descriptor fetch
